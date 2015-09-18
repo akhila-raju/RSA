@@ -106,7 +106,7 @@ static int decrypt_mode(const char *key_filename, const char *c_str)
 	// ● Parse the ciphertext string into an integer c​.​
 	mpz_t c;
 	mpz_init(c);
-	encode(c, c_str);
+	mpz_set_str(c, c_str, 10);
 
 	// ● Call ​rsa_decrypt​ and store the result in ​m.​
 	mpz_t m;
@@ -117,7 +117,7 @@ static int decrypt_mode(const char *key_filename, const char *c_str)
 	char * decoded;
 	size_t string_size;
 	decoded = decode(m, &string_size);
-	printf("%s\n", decoded);
+	printf("%s", decoded);
 
 	// ● Call ​rsa_key_clear​ to free the public key.
 	rsa_key_clear(&key);
